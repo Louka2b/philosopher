@@ -4,14 +4,13 @@ CC          = cc
 CFLAGS      = -Wall -Wextra -Werror -pthread
 CPPFLAGS    = -Iincludes
 
-SRC_DIR     = src
 OBJ_DIR     = obj
 
 SRCS        = \
-	$(SRC_DIR)/main.c \
-	$(SRC_DIR)/pars.c \
-	$(SRC_DIR)/utils/ft_utils.c \
-	$(SRC_DIR)/utils/mutex_utils.c
+	src/main.c \
+	src/pars.c \
+	src/utils/ft_utils.c \
+	src/utils/mutex_utils.c
 
 OBJS        = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.c=.o)))
 
