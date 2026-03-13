@@ -6,11 +6,11 @@
 /*   By: ldeplace <ldeplace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 13:50:32 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/13 16:28:20 by ldeplace         ###   ########.fr       */
+/*   Updated: 2026/03/13 16:43:03 by ldeplace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "philo.h"
 
 static void	init_philo_links(t_data *data)
 {
