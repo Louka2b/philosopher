@@ -6,7 +6,7 @@
 /*   By: ldeplace <ldeplace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:24:51 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/13 21:43:26 by ldeplace         ###   ########.fr       */
+/*   Updated: 2026/03/13 21:59:37 by ldeplace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ long				elapsed_ms(long start_ms);
 long				timestamp_ms(void);
 void				assign_forks(t_data *data);
 void				destroy_forks(t_data *data);
+void				init_data(t_data *data, char **argv, int argc);
 
 #endif
