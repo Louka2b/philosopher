@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldeplace <ldeplace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/13 13:42:03 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/13 16:06:44 by ldeplace         ###   ########.fr       */
+/*   Created: 2026/03/13 15:52:47 by ldeplace          #+#    #+#             */
+/*   Updated: 2026/03/13 15:53:30 by ldeplace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "../../includes/philo.h"
 
-int	main(int argc, char **argv)
+int	ft_atoi(const char *str)
 {
-	t_data	data;
+	int	result;
+	int	sign;
 
-	if (argc != 5 && argc != 6)
-		return (write(1, "Error\nphilosophers need 4 or 5 args\n", 36), 1);
-	if (pars(argv, &data) == 5)
-		return (1);
-	return (0);
+	result = 0;
+	sign = 1;
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '-' || *str == '+')
+	{
+		if (*str == '-')
+			sign = -1;
+		str++;
+	}
+	while (*str >= '0' && *str <= '9')
+	{
+		result = (result * 10) + (*str - '0');
+		str++;
+	}
+	return (result * sign);
 }

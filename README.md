@@ -15,7 +15,7 @@ PHILOSOPHERS
 </a>
 &nbsp;
 <a href="#">
-<img src="https://img.shields.io/badge/42-philosophers-00BABC?style=for-the-badge&logo=42&logoColor=white" alt="42 Project">
+<img src="https://img.shields.io/badge/‎-philosophers-00BABC?style=for-the-badge&logo=42&logoColor=white" alt="42 Project">
 </a>
 &nbsp;
 <a href="#">
