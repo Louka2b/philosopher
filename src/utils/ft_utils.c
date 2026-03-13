@@ -6,11 +6,29 @@
 /*   By: ldeplace <ldeplace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 15:52:47 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/13 15:53:30 by ldeplace         ###   ########.fr       */
+/*   Updated: 2026/03/13 18:43:23 by ldeplace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/philo.h"
+#include "philo.h"
+
+int	check_sign(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (-1);
+	while (str[i])
+	{
+		if (str[i] == '-')
+		{
+			return (-1);
+		}
+		i++;
+	}
+	return (0);
+}
 
 int	ft_atoi(const char *str)
 {

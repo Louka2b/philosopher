@@ -6,7 +6,7 @@
 /*   By: ldeplace <ldeplace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:24:51 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/13 16:02:01 by ldeplace         ###   ########.fr       */
+/*   Updated: 2026/03/13 18:38:40 by ldeplace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 # define PHILO_H
 
 # include <pthread.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <sys/time.h>
 
 typedef struct s_data
 {
@@ -49,6 +51,9 @@ typedef struct s_philo
 int					pars(char **argv, t_data *data);
 int					ft_atoi(const char *str);
 int					init_forks(t_data *data);
+int					check_sign(char *str);
+long				elapsed_ms(long start_ms);
+long				timestamp_ms(void);
 void				assign_forks(t_data *data);
 void				destroy_forks(t_data *data);
 
