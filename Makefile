@@ -10,7 +10,9 @@ SRCS        = \
 	src/pars.c \
 	src/utils/ft_utils.c \
 	src/utils/mutex_utils.c \
-	src/utils/time_utils.c
+	src/utils/time_utils.c \
+	src/init.c \
+	sleep_utils.c \
 
 OBJS        = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.c=.o)))
 

@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   sleep_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldeplace <ldeplace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/13 13:42:03 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/16 13:29:35 by ldeplace         ###   ########.fr       */
+/*   Created: 2026/03/16 13:11:10 by ldeplace          #+#    #+#             */
+/*   Updated: 2026/03/16 13:28:28 by ldeplace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+void	ft_usleep(long time)
 {
-	t_data	data;
+	long	time_start;
 
-	if (argc != 5 && argc != 6)
-		return (write(1, "Error\nphilosophers need 4 or 5 args\n", 36), 1);
-	if (check_all_sign(argc, argv) == -1)
-		return (1);
-	if (check_all_number(argc, argv) == -1)
-		return (1);
-	init_data(&data, argv, argc);
-	if (pars(argv, &data) == 5)
-		return (1);
-	ft_usleep(9000);
-	return (0);
+	time_start = timestamp_ms();
+	while (elapsed_ms(time_start) < time)
+		usleep(1);
 }
