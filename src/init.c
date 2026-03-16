@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldeplace <ldeplace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/13 13:42:03 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/16 13:29:35 by ldeplace         ###   ########.fr       */
+/*   Created: 2026/03/16 13:29:56 by ldeplace          #+#    #+#             */
+/*   Updated: 2026/03/16 13:30:09 by ldeplace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+void	init_data(t_data *data, char **argv, int argc)
 {
-	t_data	data;
-
-	if (argc != 5 && argc != 6)
-		return (write(1, "Error\nphilosophers need 4 or 5 args\n", 36), 1);
-	if (check_all_sign(argc, argv) == -1)
-		return (1);
-	if (check_all_number(argc, argv) == -1)
-		return (1);
-	init_data(&data, argv, argc);
-	if (pars(argv, &data) == 5)
-		return (1);
-	ft_usleep(9000);
-	return (0);
+	data->nb_philo = ft_atoi(argv[1]);
+	data->time_to_die = ft_atoi(argv[2]);
+	data->time_to_eat = ft_atoi(argv[3]);
+	data->time_to_sleep = ft_atoi(argv[4]);
+	if (argc == 6)
+		data->must_eat_count = ft_atoi(argv[5]);
+	else
+		data->must_eat_count = -1;
+	data->start_time = timestamp_ms();
+	data->someone_dead = 0;
+	data->all_ate = 0;
+	data->forks = NULL;
+	data->philos = NULL;
 }
