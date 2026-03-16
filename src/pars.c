@@ -6,47 +6,11 @@
 /*   By: ldeplace <ldeplace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 13:50:32 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/13 21:59:33 by ldeplace         ###   ########.fr       */
+/*   Updated: 2026/03/13 16:43:03 by ldeplace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	check_all_sign(int argc, char **argv)
-{
-	if (check_sign(argv[1]) == -1)
-		return (printf("bad args entry\n"), -1);
-	if (check_sign(argv[2]) == -1)
-		return (printf("bad args entry\n"), -1);
-	if (check_sign(argv[3]) == -1)
-		return (printf("bad args entry\n"), -1);
-	if (check_sign(argv[4]) == -1)
-		return (printf("bad args entry\n"), -1);
-	if (argc == 6)
-	{
-		if (check_sign(argv[5]) == -1)
-			return (printf("bad args entry\n"), -1);
-	}
-	return (0);
-}
-
-int	check_all_number(int argc, char **argv)
-{
-	if (check_number(argv[1]) == -1)
-		return (printf("bad args entry\n"), -1);
-	if (check_number(argv[2]) == -1)
-		return (printf("bad args entry\n"), -1);
-	if (check_number(argv[3]) == -1)
-		return (printf("bad args entry\n"), -1);
-	if (check_number(argv[4]) == -1)
-		return (printf("bad args entry\n"), -1);
-	if (argc == 6)
-	{
-		if (check_number(argv[5]) == -1)
-			return (printf("bad args entry\n"), -1);
-	}
-	return (0);
-}
 
 static void	init_philo_links(t_data *data)
 {
@@ -63,14 +27,13 @@ static void	init_philo_links(t_data *data)
 	}
 }
 
-
 int	pars(char **argv, t_data *data)
 {
 	data->nb_philo = ft_atoi(argv[1]);
 	data->forks = NULL;
 	data->philos = malloc(sizeof(t_philo) * data->nb_philo);
 	if (!data->philos)
-		return (write(1, "Error\nmalloc\n", 20),
+		return (write(1, "Error\nmalloc il marche pas sale fdp de philo\n", 20),
 			5);
 	init_philo_links(data);
 	if (init_forks(data))

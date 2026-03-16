@@ -6,7 +6,7 @@
 /*   By: ldeplace <ldeplace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:24:51 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/16 13:18:02 by ldeplace         ###   ########.fr       */
+/*   Updated: 2026/03/13 18:38:40 by ldeplace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,11 @@ typedef struct s_philo
 
 int					pars(char **argv, t_data *data);
 int					ft_atoi(const char *str);
-int					check_number(char *str);
-int					check_all_sign(int argc, char **argv);
 int					init_forks(t_data *data);
-int					check_all_number(int argc, char **argv);
 int					check_sign(char *str);
 long				elapsed_ms(long start_ms);
 long				timestamp_ms(void);
 void				assign_forks(t_data *data);
-void				ft_usleep(long time);
 void				destroy_forks(t_data *data);
-void				init_data(t_data *data, char **argv, int argc);
 
 #endif
