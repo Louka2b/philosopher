@@ -6,7 +6,7 @@
 /*   By: ldeplace <ldeplace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 13:42:03 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/16 13:29:35 by ldeplace         ###   ########.fr       */
+/*   Updated: 2026/03/16 13:51:48 by ldeplace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,5 @@ int	main(int argc, char **argv)
 	init_data(&data, argv, argc);
 	if (pars(argv, &data) == 5)
 		return (1);
-	ft_usleep(9000);
 	return (0);
 }
