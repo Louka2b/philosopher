@@ -6,7 +6,7 @@
 /*   By: ldeplace <ldeplace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 13:42:03 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/16 13:20:20 by ldeplace         ###   ########.fr       */
+/*   Updated: 2026/03/13 18:25:38 by ldeplace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,8 @@ int	main(int argc, char **argv)
 
 	if (argc != 5 && argc != 6)
 		return (write(1, "Error\nphilosophers need 4 or 5 args\n", 36), 1);
-	if (check_all_sign(argc, argv) == -1)
-		return (1);
-	if (check_all_number(argc, argv) == -1)
-		return (1);
-	init_data(&data, argv, argc);
 	if (pars(argv, &data) == 5)
 		return (1);
-	ft_usleep(9000);
+	data.start_time = timestamp_ms();
 	return (0);
 }

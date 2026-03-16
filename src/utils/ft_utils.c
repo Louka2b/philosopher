@@ -6,7 +6,7 @@
 /*   By: ldeplace <ldeplace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 15:52:47 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/13 21:46:49 by ldeplace         ###   ########.fr       */
+/*   Updated: 2026/03/13 18:43:23 by ldeplace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,31 +27,6 @@ int	check_sign(char *str)
 		}
 		i++;
 	}
-	return (0);
-}
-
-int	check_number(char *str)
-{
-	int		i;
-	long	value;
-
-	i = 0;
-	value = 0;
-	if (!str)
-		return (-1);
-	if (str[0] == '\0')
-		return (-1);
-	while (str[i])
-	{
-		if (str[i] < '0' || str[i] > '9')
-			return (-1);
-		value = (value * 10) + (str[i] - '0');
-		if (value > 2147483647)
-			return (-1);
-		i++;
-	}
-	if (value <= 0)
-		return (-1);
 	return (0);
 }
 
