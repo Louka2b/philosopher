@@ -6,7 +6,7 @@
 /*   By: ldeplace <ldeplace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 13:50:32 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/16 13:29:19 by ldeplace         ###   ########.fr       */
+/*   Updated: 2026/03/16 14:07:21 by ldeplace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,7 @@ int	pars(char **argv, t_data *data)
 	data->forks = NULL;
 	data->philos = malloc(sizeof(t_philo) * data->nb_philo);
 	if (!data->philos)
-		return (write(1, "Error\nmalloc il marche pas sale fdp de philo\n", 20),
-			5);
+		return (printf("malloc\n"), 5);
 	init_philo_links(data);
 	if (init_forks(data))
 		return (free(data->philos), write(1, "Error\nmutex init failed\n", 24),

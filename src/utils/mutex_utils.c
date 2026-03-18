@@ -6,11 +6,23 @@
 /*   By: ldeplace <ldeplace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 16:03:00 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/13 16:43:14 by ldeplace         ###   ########.fr       */
+/*   Updated: 2026/03/16 13:54:43 by ldeplace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	init_all_mutexes(t_data *data)
+{
+	if (init_global_mutexes(data))
+		return (1);
+	if (init_forks(data))
+	{
+		destroy_global_mutexes(data);
+		return (1);
+	}
+	return (0);
+}
 
 int	init_forks(t_data *data)
 {
@@ -33,6 +45,13 @@ int	init_forks(t_data *data)
 		i++;
 	}
 	return (0);
+}
+
+void	destroy_global_mutexes(t_data *data)
+{
+	pthread_mutex_destroy(&data->print_mutex);
+	pthread_mutex_destroy(&data->death_mutex);
+	pthread_mutex_destroy(&data->meal_mutex);
 }
 
 void	assign_forks(t_data *data)

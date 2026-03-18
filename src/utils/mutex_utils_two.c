@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mutex_utils_two.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ldeplace <ldeplace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/13 13:42:03 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/16 14:05:59 by ldeplace         ###   ########.fr       */
+/*   Created: 2026/03/16 13:54:46 by ldeplace          #+#    #+#             */
+/*   Updated: 2026/03/16 13:54:57 by ldeplace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+int	init_global_mutexes(t_data *data)
 {
-	t_data	data;
-
-	if (argc != 5 && argc != 6)
-		return (write(1, "Error\nphilosophers need 4 or 5 args\n", 36), 1);
-	if (check_all_sign(argc, argv) == -1)
+	if (pthread_mutex_init(&data->print_mutex, NULL) != 0)
 		return (1);
-	if (check_all_number(argc, argv) == -1)
+	if (pthread_mutex_init(&data->death_mutex, NULL) != 0)
+	{
+		pthread_mutex_destroy(&data->print_mutex);
 		return (1);
-	init_data(&data, argv, argc);
-	init_all_mutexes(&data);
-	if (pars(argv, &data) == 5)
+	}
+	if (pthread_mutex_init(&data->meal_mutex, NULL) != 0)
+	{
+		pthread_mutex_destroy(&data->print_mutex);
+		pthread_mutex_destroy(&data->death_mutex);
 		return (1);
-	data.philos = malloc(sizeof (t_philo) * data.nb_philo);
-	if (!data.philos)
-		return (printf("malloc error\n"), 1);
+	}
 	return (0);
 }
