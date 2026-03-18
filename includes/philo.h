@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldeplace <ldeplace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:24:51 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/16 13:54:11 by ldeplace         ###   ########.fr       */
+/*   Updated: 2026/03/18 16:32:37 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void				assign_forks(t_data *data);
 void				ft_usleep(long time);
 void				destroy_global_mutexes(t_data *data);
 void				destroy_forks(t_data *data);
+void				fill_philo(t_philo *philo, t_data *data, int id);
 void				init_data(t_data *data, char **argv, int argc);
 
 #endif
