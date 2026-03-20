@@ -6,7 +6,7 @@
 /*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 13:29:56 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/19 09:58:56 by louka            ###   ########.fr       */
+/*   Updated: 2026/03/20 15:04:30 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,3 @@ void	init_data(t_data *data, char **argv, int argc)
 	data->forks = NULL;
 	data->philos = NULL;
 }
-

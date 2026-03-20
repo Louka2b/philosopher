@@ -6,7 +6,7 @@
 /*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 13:42:03 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/20 13:58:51 by louka            ###   ########.fr       */
+/*   Updated: 2026/03/20 15:20:40 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	main(int argc, char **argv)
 	if (check_all_number(argc, argv) == -1)
 		return (1);
 	init_data(&data, argv, argc);
-	init_all_mutexes(&data);
+	if (init_all_mutexes(&data) != 0)
+		return (write(1, "Error\nmutex init failed\n", 24), 1);
 	if (pars(argv, &data) == 5)
 		return (1);
 	data.philos = malloc(sizeof (t_philo) * data.nb_philo);

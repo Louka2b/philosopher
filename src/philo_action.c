@@ -6,13 +6,13 @@
 /*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 09:54:10 by louka             #+#    #+#             */
-/*   Updated: 2026/03/19 17:06:43 by louka            ###   ########.fr       */
+/*   Updated: 2026/03/20 15:05:32 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void philo_eat(t_philo *philo)
+void	philo_eat(t_philo *philo)
 {
 	philo->last_meal = 0;
 	philo->meals_eaten++;

@@ -6,7 +6,7 @@
 /*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 16:03:00 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/19 17:24:20 by louka            ###   ########.fr       */
+/*   Updated: 2026/03/20 15:05:57 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	destroy_forks(t_data *data)
 	if (!data->forks)
 		return ;
 	i = 0;
-	while  (i < data->nb_philo) 
+	while (i < data->nb_philo)
 	{
 		pthread_mutex_destroy(&data->forks[i]);
 		i++;

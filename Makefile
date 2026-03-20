@@ -1,7 +1,7 @@
 NAME        = philo
 
 CC          = cc
-CFLAGS      = -Wall -Wextra -Werror -pthread
+CFLAGS      = -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer
 CPPFLAGS    = -Iincludes
 OBJ_DIR     = obj
 
@@ -16,7 +16,7 @@ SRCS        = \
 	src/utils/print_utils.c \
 	src/utils/mutex_utils_two.c \
 	src/fill_philo.c \
-	src/philo_start.c \
+	src/thread_start.c \
 	src/philo_action.c \
 	src/philo_routine.c \
 

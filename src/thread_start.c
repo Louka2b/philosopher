@@ -6,7 +6,7 @@
 /*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 14:20:00 by louka             #+#    #+#             */
-/*   Updated: 2026/03/20 14:27:09 by louka            ###   ########.fr       */
+/*   Updated: 2026/03/20 15:04:18 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,17 @@ static void	*philo_thread_init(void *arg)
 	return (NULL);
 }
 
+static int	create_thread(t_data *data, t_routine_arg *routine_arg, int i)
+{
+	if (pthread_create(&data->philos[i].thread, NULL, philo_thread_init,
+			routine_arg) != 0)
+	{
+		free(routine_arg);
+		return (1);
+	}
+	return (0);
+}
+
 int	philo_start(t_data *data)
 {
 	int				i;
@@ -41,19 +52,14 @@ int	philo_start(t_data *data)
 			return (1);
 		routine_arg->data = data;
 		routine_arg->philo = &data->philos[i];
-		if (pthread_create(&data->philos[i].thread, NULL, philo_thread_init,
-				routine_arg) != 0)
-		{
-			free(routine_arg);
+		if (create_thread(data, routine_arg, i) != 0)
 			return (1);
-		}
 		i++;
 	}
 	i = 0;
 	while (i < data->nb_philo)
 	{
-		if (pthread_join(data->philos[i].thread, NULL) != 0)
-			return (1);
+		pthread_join(data->philos[i].thread, NULL);
 		i++;
 	}
 	return (0);
