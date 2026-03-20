@@ -6,7 +6,7 @@
 /*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:24:51 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/18 16:32:37 by louka            ###   ########.fr       */
+/*   Updated: 2026/03/20 14:23:50 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <unistd.h>
 # include <sys/time.h>
+# include <unistd.h>
 
 typedef struct s_data
 {
@@ -47,6 +47,11 @@ typedef struct s_philo
 	t_data			*data;
 }					t_philo;
 
+typedef struct s_routine_arg
+{
+	t_data			*data;
+	t_philo			*philo;
+}					t_routine_arg;
 
 int					pars(char **argv, t_data *data);
 int					ft_atoi(const char *str);
@@ -56,14 +61,19 @@ int					init_forks(t_data *data);
 int					check_all_number(int argc, char **argv);
 int					check_sign(char *str);
 int					init_global_mutexes(t_data *data);
+int					print_status(t_philo *philo, char *msg);
 int					init_all_mutexes(t_data *data);
 long				elapsed_ms(long start_ms);
 long				timestamp_ms(void);
 void				assign_forks(t_data *data);
 void				ft_usleep(long time);
 void				destroy_global_mutexes(t_data *data);
+void				try_print(t_philo *philo, char *msg);
 void				destroy_forks(t_data *data);
 void				fill_philo(t_philo *philo, t_data *data, int id);
+void				init_philos(t_data *data);
 void				init_data(t_data *data, char **argv, int argc);
+int					philo_start(t_data *data);
+void				philo_routine(t_philo *philo, t_data *data);
 
 #endif
