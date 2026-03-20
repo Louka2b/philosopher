@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldeplace <ldeplace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 13:42:03 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/16 14:05:59 by ldeplace         ###   ########.fr       */
+/*   Updated: 2026/03/20 13:58:51 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,8 @@ int	main(int argc, char **argv)
 	data.philos = malloc(sizeof (t_philo) * data.nb_philo);
 	if (!data.philos)
 		return (printf("malloc error\n"), 1);
+	init_philos(&data);
+	if (philo_start(&data) != 0)
+		return (1);
 	return (0);
 }

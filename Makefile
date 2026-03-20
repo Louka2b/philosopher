@@ -16,6 +16,9 @@ SRCS        = \
 	src/utils/print_utils.c \
 	src/utils/mutex_utils_two.c \
 	src/fill_philo.c \
+	src/philo_start.c \
+	src/philo_action.c \
+	src/philo_routine.c \
 
 OBJS        = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.c=.o)))
 

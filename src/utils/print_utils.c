@@ -3,16 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   print_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldeplace <ldeplace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 13:41:41 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/16 13:44:24 by ldeplace         ###   ########.fr       */
+/*   Updated: 2026/03/20 14:22:57 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	print_status(t_philo *philo, char *msg)
+void	try_print(t_philo *philo, char *msg)
+{
+	while (print_status(philo, msg) != 0)
+		ft_usleep(1);
+}
+
+int	print_status(t_philo *philo, char *msg)
 {
 	int	can;
 
@@ -22,8 +28,9 @@ void	print_status(t_philo *philo, char *msg)
 		can = 1;
 	pthread_mutex_unlock(&philo->data->death_mutex);
 	if (!can)
-		return ;
+		return (1);
 	pthread_mutex_lock(&philo->data->print_mutex);
 	printf("%ld %d %s\n", elapsed_ms(philo->data->start_time), philo->id, msg);
 	pthread_mutex_unlock(&philo->data->print_mutex);
+	return (0);
 }
