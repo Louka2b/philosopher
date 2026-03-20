@@ -6,7 +6,7 @@
 /*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 13:41:41 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/20 14:47:13 by louka            ###   ########.fr       */
+/*   Updated: 2026/03/20 17:49:29 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void	try_print(t_philo *philo, char *msg)
 {
-	while (print_status(philo, msg) != 0)
-	{
-	}
+	print_status(philo, msg);
 }
 
 int	print_status(t_philo *philo, char *msg)
