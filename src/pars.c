@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldeplace <ldeplace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 13:50:32 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/16 14:07:21 by ldeplace         ###   ########.fr       */
+/*   Updated: 2026/03/20 17:33:35 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,34 +48,13 @@ int	check_all_number(int argc, char **argv)
 	return (0);
 }
 
-static void	init_philo_links(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->nb_philo)
-	{
-		data->philos[i].id = i + 1;
-		data->philos[i].data = data;
-		data->philos[i].meals_eaten = 0;
-		data->philos[i].last_meal = 0;
-		i++;
-	}
-}
-
 int	pars(char **argv, t_data *data)
 {
-	data->nb_philo = ft_atoi(argv[1]);
-	data->forks = NULL;
-	data->philos = malloc(sizeof(t_philo) * data->nb_philo);
-	if (!data->philos)
-		return (printf("malloc\n"), 5);
-	init_philo_links(data);
-	if (init_forks(data))
-		return (free(data->philos), write(1, "Error\nmutex init failed\n", 24),
-			5);
-	assign_forks(data);
-	destroy_forks(data);
-	free(data->philos);
+	(void)argv;
+	if (data->nb_philo <= 0 || data->time_to_die <= 0
+		|| data->time_to_eat <= 0 || data->time_to_sleep <= 0)
+		return (write(1, "Error\ninvalid args\n", 19), 5);
+	if (data->must_eat_count == 0)
+		return (write(1, "Error\ninvalid args\n", 19), 5);
 	return (0);
 }

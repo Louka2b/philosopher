@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
+/*   By: louka <ldeplace@student.42.fr            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 16:24:51 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/20 14:23:50 by louka            ###   ########.fr       */
+/*   Updated: 2026/03/20 17:23:52 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,20 @@ int					check_all_sign(int argc, char **argv);
 int					init_forks(t_data *data);
 int					check_all_number(int argc, char **argv);
 int					check_sign(char *str);
+int					ft_take_forks(t_philo *philo, t_data *data);
 int					init_global_mutexes(t_data *data);
 int					print_status(t_philo *philo, char *msg);
 int					init_all_mutexes(t_data *data);
 long				elapsed_ms(long start_ms);
 long				timestamp_ms(void);
 void				assign_forks(t_data *data);
+void				philo_eat(t_philo *philo, t_data *data);
 void				ft_usleep(long time);
+void				ft_drop_forks(t_philo *philo, t_data *data);
 void				destroy_global_mutexes(t_data *data);
-void				try_print(t_philo *philo, char *msg);
+void				try_print(t_philo *philo, t_data *data, char *msg);
 void				destroy_forks(t_data *data);
+void				philo_sleep(t_philo *philo, t_data *data);
 void				fill_philo(t_philo *philo, t_data *data, int id);
 void				init_philos(t_data *data);
 void				init_data(t_data *data, char **argv, int argc);
