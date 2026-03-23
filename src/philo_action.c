@@ -6,7 +6,7 @@
 /*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 09:54:10 by louka             #+#    #+#             */
-/*   Updated: 2026/03/20 18:05:47 by louka            ###   ########.fr       */
+/*   Updated: 2026/03/23 12:05:29 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ static void	set_all_ate_if_needed(t_data *data)
 	pthread_mutex_unlock(&data->death_mutex);
 }
 
-int	ft_take_forks(t_philo *philo)
+int	ft_take_forks(t_philo *philo, t_data *data)
 {
 	if (philo->left_fork == philo->right_fork)
 	{
 		pthread_mutex_lock(philo->left_fork);
-		try_print(philo, "has taken a fork");
+		try_print(philo, data, "has taken a fork");
 		ft_usleep(philo->data->time_to_die);
 		pthread_mutex_unlock(philo->left_fork);
 		return (0);
@@ -43,23 +43,23 @@ int	ft_take_forks(t_philo *philo)
 	if (philo->id % 2 == 1)
 	{
 		pthread_mutex_lock(philo->right_fork);
-		try_print(philo, "has taken a fork");
+		try_print(philo, data, "has taken a fork");
 		pthread_mutex_lock(philo->left_fork);
-		try_print(philo, "has taken a fork");
+		try_print(philo, data, "has taken a fork");
 		return (1);
 	}
 	pthread_mutex_lock(philo->left_fork);
-	try_print(philo, "has taken a fork");
+	try_print(philo, data, "has taken a fork");
 	pthread_mutex_lock(philo->right_fork);
-	try_print(philo, "has taken a fork");
+	try_print(philo, data, "has taken a fork");
 	return (1);
 }
 
-void	ft_drop_forks(t_philo *philo)
+void	ft_drop_forks(t_philo *philo, t_data *data)
 {
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
-	try_print(philo, "has dropped forks");
+	try_print(philo, data, "has dropped forks");
 }
 
 void	philo_eat(t_philo *philo, t_data *data)
@@ -72,11 +72,11 @@ void	philo_eat(t_philo *philo, t_data *data)
 	philo->meals_eaten++;
 	set_all_ate_if_needed(data);
 	pthread_mutex_unlock(&data->meal_mutex);
-	try_print(philo, "has eaten");
+	try_print(philo, data, "has eaten");
 }
 
 void	philo_sleep(t_philo *philo, t_data *data)
 {
-	try_print(philo, "sleep");
+	try_print(philo, data, "sleep");
 	ft_usleep(data->time_to_sleep);
 }

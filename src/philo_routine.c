@@ -52,6 +52,7 @@ static int	check_self_death(t_philo *philo, t_data *data)
 	{
 		data->someone_dead = 1;
 		pthread_mutex_unlock(&data->death_mutex);
+		ft_usleep(1);
 		printf("%ld %d died\n", elapsed_ms(data->start_time), philo->id);
 		return (1);
 	}
@@ -66,10 +67,10 @@ static void	routine_step(t_philo *philo, t_data *data)
 		ft_usleep(1);
 		return ;
 	}
-	if (ft_take_forks(philo) == 1)
+	if (ft_take_forks(philo, data) == 1)
 	{
 		philo_eat(philo, data);
-		ft_drop_forks(philo);
+		ft_drop_forks(philo, data);
 		philo_sleep(philo, data);
 	}
 	else

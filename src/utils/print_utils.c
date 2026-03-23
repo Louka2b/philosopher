@@ -6,15 +6,18 @@
 /*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 13:41:41 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/20 17:49:29 by louka            ###   ########.fr       */
+/*   Updated: 2026/03/23 14:54:48 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	try_print(t_philo *philo, char *msg)
+void	try_print(t_philo *philo, t_data *data, char *msg)
 {
-	print_status(philo, msg);
+	while (print_status(philo, msg) != 0 && data->all_ate == 0
+		&& data->someone_dead == 0)
+	{
+	}
 }
 
 int	print_status(t_philo *philo, char *msg)
