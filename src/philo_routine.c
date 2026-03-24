@@ -51,9 +51,10 @@ static int	check_self_death(t_philo *philo, t_data *data)
 	if (!data->someone_dead)
 	{
 		data->someone_dead = 1;
-		pthread_mutex_unlock(&data->death_mutex);
-		ft_usleep(1);
+		pthread_mutex_lock(&data->print_mutex);
 		printf("%ld %d died\n", elapsed_ms(data->start_time), philo->id);
+		pthread_mutex_unlock(&data->print_mutex);
+		pthread_mutex_unlock(&data->death_mutex);
 		return (1);
 	}
 	pthread_mutex_unlock(&data->death_mutex);
@@ -67,14 +68,13 @@ static void	routine_step(t_philo *philo, t_data *data)
 		ft_usleep(1);
 		return ;
 	}
-	if (ft_take_forks(philo, data) == 1)
-	{
-		philo_eat(philo, data);
-		ft_drop_forks(philo, data);
-		philo_sleep(philo, data);
-	}
-	else
-		ft_usleep(1);
+	if (ft_take_forks(philo, data) != 1)
+		return ;
+	philo_eat(philo, data);
+	ft_drop_forks(philo, data);
+	if (should_stop(data))
+		return ;
+	philo_sleep(philo, data);
 }
 
 void	philo_routine(t_philo *philo, t_data *data)

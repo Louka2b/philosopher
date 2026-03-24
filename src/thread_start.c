@@ -6,7 +6,7 @@
 /*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 14:20:00 by louka             #+#    #+#             */
-/*   Updated: 2026/03/24 14:27:11 by louka            ###   ########.fr       */
+/*   Updated: 2026/03/24 15:45:14 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,23 @@ static int	create_thread(t_data *data, t_routine_arg *routine_arg, int i)
 	return (0);
 }
 
+static int	stop_and_join_created_threads(t_data *data, int created_count)
+{
+	int	j;
+
+	pthread_mutex_lock(&data->death_mutex);
+	data->someone_dead = 1;
+	pthread_mutex_unlock(&data->death_mutex);
+	j = 0;
+	while (j < created_count)
+	{
+		pthread_join(data->philos[j].thread, NULL);
+		j++;
+	}
+	write(2, "Error\npthread_create failed\n", 28);
+	return (1);
+}
+
 int	philo_start(t_data *data)
 {
 	int				i;
@@ -53,7 +70,7 @@ int	philo_start(t_data *data)
 		routine_arg->data = data;
 		routine_arg->philo = &data->philos[i];
 		if (create_thread(data, routine_arg, i) != 0)
-			return (1);
+			return (stop_and_join_created_threads(data, i));
 		i++;
 	}
 	i = 0;
