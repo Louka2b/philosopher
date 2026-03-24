@@ -6,7 +6,7 @@
 /*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 13:42:03 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/20 17:33:38 by louka            ###   ########.fr       */
+/*   Updated: 2026/03/24 14:31:33 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,8 @@ int	main(int argc, char **argv)
 	init_philos(&data);
 	if (philo_start(&data) != 0)
 		return (1);
+	free(data.philos);
+	destroy_global_mutexes(&data);
+	destroy_forks(&data);
 	return (0);
 }
