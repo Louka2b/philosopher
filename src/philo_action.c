@@ -6,7 +6,7 @@
 /*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 09:54:10 by louka             #+#    #+#             */
-/*   Updated: 2026/03/23 12:05:29 by louka            ###   ########.fr       */
+/*   Updated: 2026/03/24 14:57:19 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,11 @@ void	philo_eat(t_philo *philo, t_data *data)
 	ft_usleep(data->time_to_eat);
 	pthread_mutex_lock(&data->meal_mutex);
 	philo->meals_eaten++;
-	set_all_ate_if_needed(data);
 	pthread_mutex_unlock(&data->meal_mutex);
 	try_print(philo, data, "has eaten");
+	pthread_mutex_lock(&data->meal_mutex);
+	set_all_ate_if_needed(data);
+	pthread_mutex_unlock(&data->meal_mutex);
 }
 
 void	philo_sleep(t_philo *philo, t_data *data)

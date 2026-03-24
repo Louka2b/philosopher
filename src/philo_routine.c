@@ -70,11 +70,13 @@ static void	routine_step(t_philo *philo, t_data *data)
 	if (ft_take_forks(philo, data) == 1)
 	{
 		philo_eat(philo, data);
+		if (should_stop(data))
+			return ;
 		ft_drop_forks(philo, data);
+		if (should_stop(data))
+			return ;
 		philo_sleep(philo, data);
 	}
-	else
-		ft_usleep(1);
 }
 
 void	philo_routine(t_philo *philo, t_data *data)
