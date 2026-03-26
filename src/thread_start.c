@@ -6,7 +6,7 @@
 /*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 14:20:00 by louka             #+#    #+#             */
-/*   Updated: 2026/03/24 15:45:14 by louka            ###   ########.fr       */
+/*   Updated: 2026/03/26 13:25:25 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static int	stop_and_join_created_threads(t_data *data, int created_count)
 int	philo_start(t_data *data)
 {
 	int				i;
+	pthread_t		monitor;
 	t_routine_arg	*routine_arg;
 
 	i = 0;
@@ -73,6 +74,9 @@ int	philo_start(t_data *data)
 			return (stop_and_join_created_threads(data, i));
 		i++;
 	}
+	if (pthread_create(&monitor, NULL, monitor_routine, data) != 0)
+		return (stop_and_join_created_threads(data, data->nb_philo));
+	pthread_join(monitor, NULL);
 	i = 0;
 	while (i < data->nb_philo)
 	{

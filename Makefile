@@ -19,6 +19,7 @@ SRCS        = \
 	src/thread_start.c \
 	src/philo_action.c \
 	src/philo_routine.c \
+	src/monitoring.c \
 
 OBJS        = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.c=.o)))
 

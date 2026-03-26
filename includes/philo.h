@@ -79,5 +79,6 @@ void				init_philos(t_data *data);
 void				init_data(t_data *data, char **argv, int argc);
 int					philo_start(t_data *data);
 void				philo_routine(t_philo *philo, t_data *data);
+void				*monitor_routine(void *arg);
 
 #endif
