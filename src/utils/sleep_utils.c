@@ -6,7 +6,7 @@
 /*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 13:11:10 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/23 13:24:55 by louka            ###   ########.fr       */
+/*   Updated: 2026/03/26 14:41:45 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,19 @@
 void	ft_usleep(long time)
 {
 	long	time_start;
+	long	elapsed;
+	long	remaining;
 
 	time_start = timestamp_ms();
-	while (elapsed_ms(time_start) < time)
-		usleep(1);
+	while (1)
+	{
+		elapsed = elapsed_ms(time_start);
+		if (elapsed >= time)
+			break ;
+		remaining = time - elapsed;
+		if (remaining > 2)
+			usleep((remaining - 1) * 1000);
+		else
+			usleep(100);
+	}
 }

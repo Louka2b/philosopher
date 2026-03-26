@@ -6,7 +6,7 @@
 /*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 13:24:09 by louka             #+#    #+#             */
-/*   Updated: 2026/03/26 13:27:28 by louka            ###   ########.fr       */
+/*   Updated: 2026/03/26 14:26:23 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	monitor_one_philo(t_data *data, int i)
 		pthread_mutex_unlock(&data->meal_mutex);
 		return (0);
 	}
-	if (elapsed_ms(data->philos[i].last_meal) >= data->time_to_die)
+	if (elapsed_ms(data->philos[i].last_meal) > data->time_to_die)
 	{
 		pthread_mutex_unlock(&data->meal_mutex);
 		set_death_and_print(data, data->philos[i].id);
@@ -73,6 +73,7 @@ void	*monitor_routine(void *arg)
 				return (NULL);
 			i++;
 		}
+		usleep(500);
 	}
 	return (NULL);
 }

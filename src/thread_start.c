@@ -6,7 +6,7 @@
 /*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 14:20:00 by louka             #+#    #+#             */
-/*   Updated: 2026/03/26 13:25:25 by louka            ###   ########.fr       */
+/*   Updated: 2026/03/26 14:04:15 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,13 @@ int	philo_start(t_data *data)
 	pthread_t		monitor;
 	t_routine_arg	*routine_arg;
 
+	data->start_time = timestamp_ms();
+	i = 0;
+	while (i < data->nb_philo)
+	{
+		data->philos[i].last_meal = data->start_time;
+		i++;
+	}
 	i = 0;
 	while (i < data->nb_philo)
 	{

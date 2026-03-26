@@ -57,12 +57,22 @@ static void	routine_step(t_philo *philo, t_data *data)
 	if (should_stop(data))
 		return ;
 	philo_sleep(philo, data);
+	if (should_stop(data))
+		return ;
+	try_print(philo, data, "is thinking");
+	if (data->nb_philo % 2 == 1)
+		ft_usleep(data->time_to_eat / 2);
 }
 
 void	philo_routine(t_philo *philo, t_data *data)
 {
 	if (philo->id % 2 == 1)
-		ft_usleep(1);
+	{
+		if (data->nb_philo % 2 == 0)
+			ft_usleep(data->time_to_eat);
+		else
+			ft_usleep(data->time_to_eat / 2);
+	}
 	while (!should_stop(data))
 		routine_step(philo, data);
 }
