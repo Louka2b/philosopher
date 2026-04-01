@@ -69,6 +69,8 @@ long				timestamp_ms(void);
 void				assign_forks(t_data *data);
 void				philo_eat(t_philo *philo, t_data *data);
 void				ft_usleep(long time);
+void				fork_more(t_philo *philo, t_data *data,
+						pthread_mutex_t *first, pthread_mutex_t *second);
 void				ft_drop_forks(t_philo *philo, t_data *data);
 void				destroy_global_mutexes(t_data *data);
 void				try_print(t_philo *philo, t_data *data, char *msg);
@@ -79,5 +81,6 @@ void				init_philos(t_data *data);
 void				init_data(t_data *data, char **argv, int argc);
 int					philo_start(t_data *data);
 void				philo_routine(t_philo *philo, t_data *data);
+void				*monitor_routine(void *arg);
 
 #endif

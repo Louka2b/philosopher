@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sleep_utils.c                                      :+:      :+:    :+:   */
+/*   philo_more.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/03/16 13:11:10 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/26 17:36:07 by louka            ###   ########.fr       */
+/*   Created: 2026/04/01 12:49:15 by louka             #+#    #+#             */
+/*   Updated: 2026/04/01 12:53:21 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_usleep(long time)
-{
-	long	time_start;
-	long	elapsed;
-	long	remaining;
+void	fork_more(t_philo *philo, t_data *data, pthread_mutex_t *first,
+		pthread_mutex_t *second)
 
-	time_start = timestamp_ms();
-	while (1)
-	{
-		elapsed = elapsed_ms(time_start);
-		if (elapsed >= time)
-			break ;
-		remaining = time - elapsed;
-		if (remaining > 2)
-			usleep((remaining - 1) * 1000);
-		else
-			usleep(100);
-	}
+{
+	pthread_mutex_lock(first);
+	try_print(philo, data, "has taken a fork");
+	pthread_mutex_lock(second);
+	try_print(philo, data, "has taken a fork");
 }

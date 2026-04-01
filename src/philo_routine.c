@@ -36,28 +36,16 @@ static int	should_stop(t_data *data)
 	return (stop);
 }
 
-static int	check_self_death(t_philo *philo, t_data *data)
+static void	routine_step_next(t_philo *philo, t_data *data)
 {
-	if (philo_is_full(philo, data))
-		return (0);
-	pthread_mutex_lock(&data->meal_mutex);
-	if (elapsed_ms(philo->last_meal) < data->time_to_die)
-	{
-		pthread_mutex_unlock(&data->meal_mutex);
-		return (0);
-	}
-	pthread_mutex_unlock(&data->meal_mutex);
-	pthread_mutex_lock(&data->death_mutex);
-	if (data->someone_dead)
-	{
-		pthread_mutex_unlock(&data->death_mutex);
-		return (1);
-	}
-	pthread_mutex_lock(&data->print_mutex);
-	data->someone_dead = 1;
-	pthread_mutex_unlock(&data->death_mutex);
-	printf("%ld %d died\n", elapsed_ms(data->start_time), philo->id);
-	return (1);
+	if (should_stop(data))
+		return ;
+	philo_sleep(philo, data);
+	if (should_stop(data))
+		return ;
+	try_print(philo, data, "is thinking");
+	if (data->nb_philo % 2 == 1)
+		ft_usleep(data->time_to_eat / 2);
 }
 
 static void	routine_step(t_philo *philo, t_data *data)
@@ -78,19 +66,22 @@ static void	routine_step(t_philo *philo, t_data *data)
 	}
 	philo_eat(philo, data);
 	ft_drop_forks(philo, data);
-	if (should_stop(data))
+	if (philo_is_full(philo, data))
 		return ;
-	philo_sleep(philo, data);
+	routine_step_next(philo, data);
 }
 
 void	philo_routine(t_philo *philo, t_data *data)
 {
 	if (philo->id % 2 == 1)
-		ft_usleep(1);
-	while (!should_stop(data))
 	{
-		if (check_self_death(philo, data))
-			break ;
-		routine_step(philo, data);
+		if (data->nb_philo == 4)
+			ft_usleep(1);
+		else if (data->nb_philo % 2 == 0)
+			ft_usleep(data->time_to_eat);
+		else
+			ft_usleep(data->time_to_eat / 2);
 	}
+	while (!should_stop(data))
+		routine_step(philo, data);
 }
