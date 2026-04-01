@@ -12,6 +12,21 @@
 
 #include "philo.h"
 
+static void	wait_for_start(t_data *data)
+{
+	while (1)
+	{
+		pthread_mutex_lock(&data->start_mutex);
+		if (data->start_simulation)
+		{
+			pthread_mutex_unlock(&data->start_mutex);
+			break ;
+		}
+		pthread_mutex_unlock(&data->start_mutex);
+		ft_usleep(1);
+	}
+}
+
 static int	philo_is_full(t_philo *philo, t_data *data)
 {
 	int	full;
@@ -73,6 +88,7 @@ static void	routine_step(t_philo *philo, t_data *data)
 
 void	philo_routine(t_philo *philo, t_data *data)
 {
+	wait_for_start(data);
 	if (philo->id % 2 == 1)
 	{
 		if (data->nb_philo == 4)

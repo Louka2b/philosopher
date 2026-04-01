@@ -6,7 +6,7 @@
 /*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/20 14:20:00 by louka             #+#    #+#             */
-/*   Updated: 2026/04/01 12:55:56 by louka            ###   ########.fr       */
+/*   Updated: 2026/04/01 13:06:39 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ static int	stop_and_join_created_threads(t_data *data, int created_count)
 {
 	int	j;
 
+	pthread_mutex_lock(&data->start_mutex);
+	data->start_simulation = 1;
+	pthread_mutex_unlock(&data->start_mutex);
 	pthread_mutex_lock(&data->death_mutex);
 	data->someone_dead = 1;
 	pthread_mutex_unlock(&data->death_mutex);
@@ -58,12 +61,6 @@ static int	stop_and_join_created_threads(t_data *data, int created_count)
 
 static int	philo_start_more(t_data *data, t_routine_arg *routine_arg, int i)
 {
-	data->start_time = timestamp_ms();
-	while (i < data->nb_philo)
-	{
-		data->philos[i].last_meal = data->start_time;
-		i++;
-	}
 	i = 0;
 	while (i < data->nb_philo)
 	{
@@ -89,8 +86,18 @@ int	philo_start(t_data *data)
 	routine_arg = NULL;
 	if (philo_start_more(data, routine_arg, i) == 1)
 		return (1);
+	data->start_time = timestamp_ms();
+	i = 0;
+	while (i < data->nb_philo)
+	{
+		data->philos[i].last_meal = data->start_time;
+		i++;
+	}
 	if (pthread_create(&monitor, NULL, monitor_routine, data) != 0)
 		return (stop_and_join_created_threads(data, data->nb_philo));
+	pthread_mutex_lock(&data->start_mutex);
+	data->start_simulation = 1;
+	pthread_mutex_unlock(&data->start_mutex);
 	pthread_join(monitor, NULL);
 	i = 0;
 	while (i < data->nb_philo)

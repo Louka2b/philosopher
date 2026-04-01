@@ -6,11 +6,26 @@
 /*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 13:24:09 by louka             #+#    #+#             */
-/*   Updated: 2026/04/01 12:56:08 by louka            ###   ########.fr       */
+/*   Updated: 2026/04/01 13:06:47 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static void	wait_for_start(t_data *data)
+{
+	while (1)
+	{
+		pthread_mutex_lock(&data->start_mutex);
+		if (data->start_simulation)
+		{
+			pthread_mutex_unlock(&data->start_mutex);
+			break ;
+		}
+		pthread_mutex_unlock(&data->start_mutex);
+		ft_usleep(1);
+	}
+}
 
 static int	simulation_stopped(t_data *data)
 {
@@ -64,6 +79,7 @@ void	*monitor_routine(void *arg)
 	int		i;
 
 	data = (t_data *)arg;
+	wait_for_start(data);
 	while (!simulation_stopped(data))
 	{
 		i = 0;
@@ -73,7 +89,6 @@ void	*monitor_routine(void *arg)
 				return (NULL);
 			i++;
 		}
-		usleep(500);
 	}
 	return (NULL);
 }

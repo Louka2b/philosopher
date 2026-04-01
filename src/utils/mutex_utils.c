@@ -6,7 +6,7 @@
 /*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 16:03:00 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/20 15:05:57 by louka            ###   ########.fr       */
+/*   Updated: 2026/04/01 13:06:19 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	destroy_global_mutexes(t_data *data)
 	pthread_mutex_destroy(&data->print_mutex);
 	pthread_mutex_destroy(&data->death_mutex);
 	pthread_mutex_destroy(&data->meal_mutex);
+	pthread_mutex_destroy(&data->start_mutex);
 }
 
 void	assign_forks(t_data *data)
