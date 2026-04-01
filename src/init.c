@@ -6,7 +6,7 @@
 /*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 13:29:56 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/20 17:33:39 by louka            ###   ########.fr       */
+/*   Updated: 2026/04/01 13:06:09 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	init_data(t_data *data, char **argv, int argc)
 	data->start_time = timestamp_ms();
 	data->someone_dead = 0;
 	data->all_ate = 0;
+	data->start_simulation = 0;
 	data->forks = NULL;
 	data->philos = NULL;
 }

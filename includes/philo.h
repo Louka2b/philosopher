@@ -29,10 +29,12 @@ typedef struct s_data
 	long			start_time;
 	int				someone_dead;
 	int				all_ate;
+	int				start_simulation;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	death_mutex;
 	pthread_mutex_t	meal_mutex;
+	pthread_mutex_t	start_mutex;
 	struct s_philo	*philos;
 }					t_data;
 
