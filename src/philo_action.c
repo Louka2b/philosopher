@@ -6,7 +6,7 @@
 /*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 09:54:10 by louka             #+#    #+#             */
-/*   Updated: 2026/03/26 14:57:38 by louka            ###   ########.fr       */
+/*   Updated: 2026/04/01 12:54:19 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,7 @@ int	ft_take_forks(t_philo *philo, t_data *data)
 		first = philo->right_fork;
 		second = philo->left_fork;
 	}
-	pthread_mutex_lock(first);
-	try_print(philo, data, "has taken a fork");
-	pthread_mutex_lock(second);
-	try_print(philo, data, "has taken a fork");
+	fork_more(philo, data, first, second);
 	return (1);
 }
 
