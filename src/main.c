@@ -6,7 +6,7 @@
 /*   By: louka <louka@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 13:42:03 by ldeplace          #+#    #+#             */
-/*   Updated: 2026/03/24 14:31:33 by louka            ###   ########.fr       */
+/*   Updated: 2026/04/08 15:29:53 by louka            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,4 @@ int	main(int argc, char **argv)
 	destroy_forks(&data);
 	return (0);
 }
+              
